@@ -39,31 +39,53 @@ namespace ngen.Data.Blobs
 
         public bool CanRead(Employee employee)
         {
-            var rights = GetRights(employee);
+            var employeeRights = GetEmployeeRights(employee.Id);
 
-            return rights != AccessRight.None;
+            if (employeeRights == AccessRight.NotSet)
+            {
+                var roleRights = GetRoleRights(employee.SystemRoleId);
+
+                if (roleRights == AccessRight.NotSet)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public bool CanWrite(Employee employee)
         {
-            var rights = GetRights(employee);
+            var employeeRights = GetEmployeeRights(employee.Id);
 
-            return rights == AccessRight.ReadWrite;
+            if (employeeRights == AccessRight.NotSet)
+            {
+                var roleRights = GetRoleRights(employee.SystemRoleId);
+
+                return roleRights == AccessRight.ReadWrite;
+            }
+
+            return employeeRights == AccessRight.ReadWrite;
         }
 
-        private AccessRight GetRights(Employee employee)
+        private AccessRight GetRoleRights(int roleId)
         {
-            if (_systemRoleRights.ContainsKey(employee.SystemRoleId))
+            if (_systemRoleRights.ContainsKey(roleId))
             {
-                return _systemRoleRights[employee.SystemRoleId];
+                return _systemRoleRights[roleId];
             }
 
-            if (_employeeRights.ContainsKey(employee.Id))
+            return AccessRight.NotSet;
+        }
+
+        private AccessRight GetEmployeeRights(int employeeId)
+        {
+            if (_employeeRights.ContainsKey(employeeId))
             {
-                return _employeeRights[employee.Id];
+                return _employeeRights[employeeId];
             }
 
-            return AccessRight.None;
+            return AccessRight.NotSet;
         }
 
         public byte[] ToBytes()

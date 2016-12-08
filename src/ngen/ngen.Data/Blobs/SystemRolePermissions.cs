@@ -8,21 +8,22 @@ namespace ngen.Data.Blobs
 {
     public sealed class SystemRolePermissions
     {
-        private readonly SystemPermission _permissions = SystemPermission.NotSet;
+        private SystemPermission _permissions = SystemPermission.NotSet;
 
         public void Grant(SystemPermission permission)
         {
-            _permissions.Add(permission);
+            _permissions = _permissions.Add(permission);
         }
 
         public void Deny(SystemPermission permission)
         {
-            _permissions.Remove(permission);
+            _permissions = _permissions.Remove(permission);
         }
 
         public bool Has(SystemPermission permission)
         {
-            return _permissions.Has(permission);
+            // administrator permission overrides all others
+            return _permissions.Has(SystemPermission.Administrator) || _permissions.Has(permission);
         }
 
         public byte[] ToBytes()

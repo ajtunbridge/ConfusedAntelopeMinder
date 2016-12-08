@@ -18,12 +18,12 @@ namespace ngen.Data.Model
 
         [Required]
         [StringLength(88)]
-        [Column(TypeName="char")]
+        [Column(TypeName="nchar")]
         public string PasswordHash { get; set; }
 
         [Required]
         [StringLength(24)]
-        [Column(TypeName = "char")]
+        [Column(TypeName = "nchar")]
         public string PasswordSalt { get; set; }
 
         [Required]

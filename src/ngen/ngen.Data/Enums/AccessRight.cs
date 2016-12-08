@@ -4,6 +4,6 @@
     {
         Read,
         ReadWrite,
-        None
+        NotSet
     }
 }

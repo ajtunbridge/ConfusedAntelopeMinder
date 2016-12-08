@@ -15,7 +15,6 @@ namespace ngen.Core.Security
     public sealed class AESEncryptionProvider : IEncryptionProvider
     {
         private const int Iterations = 1981;
-        private bool _hold;
 
         public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
 
@@ -123,14 +122,7 @@ namespace ngen.Core.Security
 
         private void Progress_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            var transferred = e.ProgressPercentage;
-            var total = (long) e.UserState;
-
-            var temp = (double) transferred/total;
-
-            var progress = Convert.ToInt32(temp*100);
-
-            OnProgressChanged(new ProgressChangedEventArgs(progress, null));
+            OnProgressChanged(new ProgressChangedEventArgs(e.ProgressPercentage, null));
         }
 
         private void OnProgressChanged(ProgressChangedEventArgs e)

@@ -2,6 +2,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #endregion
 
@@ -17,7 +18,7 @@ namespace ngen.Data.Model
 
         public bool IsCheckedOut { get; set; }
 
-        [MaxLength(-1)] // varbinary(MAX)
+        [MaxLength(-1)]
         public byte[] Permissions { get; set; }
 
         public DateTime? CheckedOutAt { get; set; }

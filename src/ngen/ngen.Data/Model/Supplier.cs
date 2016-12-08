@@ -14,6 +14,10 @@ namespace ngen.Data.Model
         [Required]
         [MaxLength(100)]
         [Index(IsUnique = true)]
-        public string Name { get; set; }
+        public string FullName { get; set; }
+
+        [MaxLength(40)]
+        [Index(IsUnique = true)]
+        public string ShortName { get; set; }
     }
 }

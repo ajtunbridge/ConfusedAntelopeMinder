@@ -14,7 +14,7 @@ namespace ngen.Data.Model
 
         [Required]
         [StringLength(32)]
-        [Column(TypeName = "char")]
+        [Column(TypeName = "nchar")]
         public string Hash { get; set; }
 
         public string Changes { get; set; }

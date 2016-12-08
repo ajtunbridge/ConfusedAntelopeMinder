@@ -16,6 +16,7 @@ namespace ngen.Data.Model
 
         public string Description { get; set; }
 
+        [MaxLength(-1)]
         public byte[] Permissions { get; set; }
     }
 }

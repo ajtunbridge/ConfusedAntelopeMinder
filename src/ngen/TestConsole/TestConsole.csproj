@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C1D79A6A-1B34-4934-88AC-97D371B15E5B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{5E4F8D94-5CA1-47FE-B47C-BB7EBDF0C559}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ngen.Data</RootNamespace>
-    <AssemblyName>ngen.Data</AssemblyName>
+    <RootNamespace>TestConsole</RootNamespace>
+    <AssemblyName>TestConsole</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,45 +52,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blobs\DocumentPermissions.cs" />
-    <Compile Include="Blobs\SystemRolePermissions.cs" />
-    <Compile Include="Enums\AccessRight.cs" />
-    <Compile Include="Enums\SystemPermission.cs" />
-    <Compile Include="Migrations\201612081842015_InitialCreate.cs" />
-    <Compile Include="Migrations\201612081842015_InitialCreate.Designer.cs">
-      <DependentUpon>201612081842015_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\Customer.cs" />
-    <Compile Include="Model\Document.cs" />
-    <Compile Include="Model\DocumentVersion.cs" />
-    <Compile Include="Model\Employee.cs" />
-    <Compile Include="Model\Fixture.cs" />
-    <Compile Include="Model\Photo.cs" />
-    <Compile Include="Model\Supplier.cs" />
-    <Compile Include="ngenContext.cs" />
-    <Compile Include="Model\Part.cs" />
-    <Compile Include="Model\PartVersion.cs" />
-    <Compile Include="Model\Person.cs" />
-    <Compile Include="Model\SystemRole.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ngen.Core\ngen.Core.csproj">
       <Project>{246c0f26-d2f3-41d7-97a8-535f576b43d4}</Project>
       <Name>ngen.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612081842015_InitialCreate.resx">
-      <DependentUpon>201612081842015_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\ngen.Data\ngen.Data.csproj">
+      <Project>{c1d79a6a-1b34-4934-88ac-97d371b15e5b}</Project>
+      <Name>ngen.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ngen.Domain\ngen.Domain.csproj">
+      <Project>{2ee9147e-36c8-4fa2-80d4-08c83e2c9f82}</Project>
+      <Name>ngen.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

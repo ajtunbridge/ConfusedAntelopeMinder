@@ -19,12 +19,14 @@ namespace ngen.Data.Model
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-
-        public Customer Customer { get; set; }
         
+        public int CustomerId { get; set; }
+
         public int? Primary2dDrawingDocumentId { get; set; }
 
         public int? Primary3dDrawingDocumentId { get; set; }
+
+        public Customer Customer { get; set; }
 
         public Document Primary2dDrawingDocument { get; set; }
 

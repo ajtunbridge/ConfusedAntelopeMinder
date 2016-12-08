@@ -1,6 +1,7 @@
 ﻿#region Using directives
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #endregion
 
@@ -19,5 +20,8 @@ namespace ngen.Data.Model
         public int PartId { get; set; }
 
         public Part Part { get; set; }
+
+        [NotMapped]
+        public string PhotoAddress => $"PartVersion:{Id}";
     }
 }

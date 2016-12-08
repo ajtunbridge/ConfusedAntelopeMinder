@@ -60,8 +60,8 @@ namespace ngen.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         UserName = c.String(nullable: false, maxLength: 30),
-                        PasswordHash = c.String(nullable: false, maxLength: 88),
-                        PasswordSalt = c.String(nullable: false, maxLength: 24),
+                        PasswordHash = c.String(nullable: false, maxLength: 88, fixedLength: true),
+                        PasswordSalt = c.String(nullable: false, maxLength: 24, fixedLength: true),
                         IsActive = c.Boolean(nullable: false),
                         PersonId = c.Int(nullable: false),
                         SystemRoleId = c.Int(nullable: false),
@@ -102,7 +102,7 @@ namespace ngen.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Hash = c.String(nullable: false, maxLength: 32),
+                        Hash = c.String(nullable: false, maxLength: 32, fixedLength: true),
                         Changes = c.String(),
                         CreatedAt = c.DateTime(nullable: false),
                         CreatedById = c.Int(nullable: false),

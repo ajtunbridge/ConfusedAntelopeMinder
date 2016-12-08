@@ -90,7 +90,9 @@ namespace ngen.Core.IO
             {
                 try
                 {
-                    OnProgressChanged(new ProgressChangedEventArgs(_bytesTransferred, _totalLength));
+                    var percentComplete = ((double)_bytesTransferred/_totalLength)*100;
+
+                    OnProgressChanged(new ProgressChangedEventArgs(Convert.ToInt32(percentComplete), _totalLength));
                     //ProgressChanged(this, new ProgressChangedEventArgs(bytesTransferred, totalLength));
                 }
                 catch (Exception)
