@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Net;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -22,6 +23,7 @@ namespace ngen.Domain.Security
             IsoStorageFile = IsolatedStorageFile.GetMachineStoreForAssembly();
         }
 
+
         public static string EncryptionPassword
         {
             get { return GetEncryptionPassword(); }
@@ -33,6 +35,7 @@ namespace ngen.Domain.Security
             get { return GetFileShareCredentials(); }
             set { SetFileShareCredentials(value); }
         }
+
 
         private static void SetFileShareCredentials(NetworkCredential credentials)
         {
@@ -66,9 +69,10 @@ namespace ngen.Domain.Security
         private static string GetEncryptionPassword()
         {
             var bytes = ReadAndDecryptFromFile(EncryptionKeyFileName);
-
+            
             return Encoding.UTF8.GetString(bytes);
         }
+
 
         private static void EncryptAndWriteToFile(byte[] bytes, string fileName)
         {
@@ -78,16 +82,13 @@ namespace ngen.Domain.Security
                 rng.GetBytes(entropy);
             }
 
-            var ciphertext = ProtectedData.Protect(bytes, entropy, DataProtectionScope.CurrentUser);
-
-            if (IsoStorageFile.FileExists(fileName))
-                IsoStorageFile.DeleteFile(fileName);
-
-            using (var isoStream = new IsolatedStorageFileStream(fileName, FileMode.CreateNew, IsoStorageFile))
+            var encryptedData = ProtectedData.Protect(bytes, entropy, DataProtectionScope.CurrentUser);
+            
+            using (var isoStream = new IsolatedStorageFileStream(fileName, FileMode.Create, IsoStorageFile))
             {
                 using (var writer = new StreamWriter(isoStream))
                 {
-                    writer.WriteLine(Convert.ToBase64String(ciphertext));
+                    writer.WriteLine(Convert.ToBase64String(encryptedData));
                     writer.WriteLine(Convert.ToBase64String(entropy));
                 }
             }

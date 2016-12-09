@@ -11,6 +11,7 @@ using ngen.Core.Security;
 using ngen.Data;
 using ngen.Data.Blobs;
 using ngen.Data.Model;
+using ngen.Domain.IO;
 using ngen.Domain.Security;
 
 namespace TestConsole
@@ -19,9 +20,18 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            var result = SecureDataStorage.FileShareCredentials;
+            try
+            {
 
-            Console.WriteLine($"{result.Domain}\\{result.UserName}: {result.Password}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("Finished. Press enter to exit");
 
             Console.ReadLine();
         }

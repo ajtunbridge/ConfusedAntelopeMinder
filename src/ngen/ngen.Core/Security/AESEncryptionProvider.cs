@@ -83,9 +83,11 @@ namespace ngen.Core.Security
             aes.BlockSize = aes.LegalBlockSizes[0].MaxSize;
             aes.KeySize = aes.LegalKeySizes[0].MaxSize;
 
-            // generate a new salt value from a GUID
-            var salt = Guid.NewGuid().ToByteArray();
-
+            // generate random 16 byte salt value
+            var salt = new byte[16];
+            var rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(salt);
+            
             // derive key and IV from supplied password
             var key = new Rfc2898DeriveBytes(password, salt, Iterations);
             aes.Key = key.GetBytes(aes.KeySize/8);

@@ -1,28 +1,24 @@
 using System;
 using System.ComponentModel;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 
 namespace ngen.Core.Security
 {
+    /// <summary>
+    /// Allows you to impersonate a domain user for the duration of a using statement
+    /// </summary>
     public class Impersonator : IDisposable
     {
         private const int LOGON32_LOGON_INTERACTIVE = 2;
         private const int LOGON32_PROVIDER_DEFAULT = 0;
 
         private WindowsImpersonationContext _impersonationContext;
-
-        /// <summary>
-        ///     Constructor. Starts the impersonation with the given credentials.
-        ///     Please note that the account that instantiates the Impersonator class
-        ///     needs to have the 'Act as part of operating system' privilege set.
-        /// </summary>
-        /// <param name="userName">The name of the user to act as.</param>
-        /// <param name="domainName">The domain name of the user to act as.</param>
-        /// <param name="password">The password of the user to act as.</param>
-        public Impersonator(string userName, string domainName, string password)
+        
+        public Impersonator(NetworkCredential credentials)
         {
-            ImpersonateValidUser(userName, domainName, password);
+            ImpersonateValidUser(credentials.UserName, credentials.Domain, credentials.Password);
         }
 
         public void Dispose()
@@ -56,14 +52,10 @@ namespace ngen.Core.Security
         ///     Does the actual impersonation.
         /// </summary>
         /// <param name="userName">The name of the user to act as.</param>
-        /// <param name="domainName">The domain name of the user to act as.</param>
+        /// <param name="domain">The domain name of the user to act as.</param>
         /// <param name="password">The password of the user to act as.</param>
-        private void ImpersonateValidUser(
-            string userName,
-            string domain,
-            string password)
+        private void ImpersonateValidUser(string userName, string domain, string password)
         {
-            WindowsIdentity tempWindowsIdentity = null;
             var token = IntPtr.Zero;
             var tokenDuplicate = IntPtr.Zero;
 
@@ -79,7 +71,7 @@ namespace ngen.Core.Security
                             ref token) != 0)
                         if (DuplicateToken(token, 2, ref tokenDuplicate) != 0)
                         {
-                            tempWindowsIdentity = new WindowsIdentity(tokenDuplicate);
+                            var tempWindowsIdentity = new WindowsIdentity(tokenDuplicate);
                             _impersonationContext = tempWindowsIdentity.Impersonate();
                         }
                         else
@@ -105,8 +97,7 @@ namespace ngen.Core.Security
         /// </summary>
         private void UndoImpersonation()
         {
-            if (_impersonationContext != null)
-                _impersonationContext.Undo();
+            _impersonationContext?.Undo();
         }
     }
 }

@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="PasswordProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecureDataStorageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ngen.Core\ngen.Core.csproj">

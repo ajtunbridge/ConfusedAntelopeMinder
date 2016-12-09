@@ -20,7 +20,7 @@ namespace ngen.Data.Model
 
         [MaxLength(-1)]
         public byte[] Permissions { get; set; }
-
+        
         public DateTime? CheckedOutAt { get; set; }
 
         public int? CheckedOutById { get; set; }
