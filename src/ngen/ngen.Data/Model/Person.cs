@@ -28,6 +28,9 @@ namespace ngen.Data.Model
         public DateTime? DateOfBirth { get; set; }
 
         [NotMapped]
+        public string FullName => $"{FirstName} {LastName}";
+
+        [NotMapped]
         public string PhotoAddress => $"Person:{Id}";
     }
 }

@@ -22,6 +22,17 @@ namespace TestConsole
         {
             try
             {
+                IPasswordProvider passwordProvider = new PBKDF2PasswordProvider();
+                var pbkdf2Hash = passwordProvider.HashPassword("password");
+
+                passwordProvider = new BCryptPasswordProvider();
+                var bcryptHash = passwordProvider.HashPassword("password");
+
+                Console.WriteLine($"Hash: {pbkdf2Hash}");
+                Console.WriteLine($"Length: {pbkdf2Hash.Length} characters");
+                Console.WriteLine();
+                Console.WriteLine($"Hash: {bcryptHash}");
+                Console.WriteLine($"Length: {bcryptHash.Length} characters");
 
             }
             catch (Exception ex)

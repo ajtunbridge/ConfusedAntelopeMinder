@@ -9,33 +9,40 @@ namespace ngen.Core.Security
 {
     public class PBKDF2PasswordProvider : IPasswordProvider
     {
-        private const int Iterations = 25000;
+        private const int Iterations = 46125;
 
-        public EncryptedPassword EncryptPassword(string plainPassword)
+        public string HashPassword(string plainPassword)
         {
-            var hashed = new EncryptedPassword();
+            var salt = new byte[32];
 
-            // saw an article somewhere about using a GUID as a salt and it seemed like a nice solution.
-            var salt = Guid.NewGuid().ToByteArray();
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(salt);
+            }
+            
+            var hash = ComputeHash(plainPassword, salt);
 
-            hashed.Hash = ComputeHash(plainPassword, salt);
-            hashed.Salt = Convert.ToBase64String(salt);
+            var retval = $"{hash}.{Convert.ToBase64String(salt)}";
 
-            return hashed;
+            return retval;
         }
 
-        public bool AreEqual(string plainPassword, string hash, string salt)
+        public bool Verify(string plainPassword, string hash)
         {
-            if (plainPassword == null || hash == null || salt == null)
+            if (plainPassword == null || hash == null)
             {
                 return false;
             }
 
-            var saltBytes = Convert.FromBase64String(salt);
+            var saltString = hash.Substring(hash.IndexOf(".", StringComparison.Ordinal) + 1);
+
+            var saltBytes = Convert.FromBase64String(saltString);
 
             var newHash = ComputeHash(plainPassword, saltBytes);
 
-            return newHash.Equals(hash);
+            var passwordHash = hash.Substring(0, hash.IndexOf(".", StringComparison.Ordinal));
+
+            return newHash.Equals(passwordHash);
         }
 
         private string ComputeHash(string text, byte[] salt)

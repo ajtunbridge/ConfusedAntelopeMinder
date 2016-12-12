@@ -23,5 +23,8 @@ namespace ngen.Data.Model
 
         [MaxLength(100)]
         public string FileName { get; set; }
+
+        [Required]
+        public bool IsPrimary { get; set; }
     }
 }

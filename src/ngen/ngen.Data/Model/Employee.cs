@@ -17,15 +17,10 @@ namespace ngen.Data.Model
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(88)]
+        [StringLength(60)]
         [Column(TypeName="nchar")]
-        public string PasswordHash { get; set; }
-
-        [Required]
-        [StringLength(24)]
-        [Column(TypeName = "nchar")]
-        public string PasswordSalt { get; set; }
-
+        public string Password { get; set; }
+        
         [Required]
         public bool IsActive { get; set; }
 

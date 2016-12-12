@@ -10,6 +10,9 @@ namespace ngen.Domain.Enum
     {
         ComputingHash,
         Encrypting,
-        Decrypting
+        Decrypting,
+        Querying,
+        Opening,
+        Complete
     }
 }

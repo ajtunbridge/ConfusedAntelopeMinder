@@ -58,8 +58,10 @@
       <DependentUpon>201612081842015_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\ClientSetting.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\DocumentFolder.cs" />
     <Compile Include="Model\DocumentVersion.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Fixture.cs" />

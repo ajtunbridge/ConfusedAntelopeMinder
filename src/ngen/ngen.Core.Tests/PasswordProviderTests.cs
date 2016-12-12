@@ -15,7 +15,7 @@ namespace ngen.Core.Tests
         {
             IPasswordProvider provider = new PBKDF2PasswordProvider();
 
-            var password = provider.EncryptPassword("plaintextpassword");
+            var password = provider.HashPassword("plaintextpassword");
 
             Assert.AreEqual(password.Hash.Length, 88);
         }
@@ -25,9 +25,9 @@ namespace ngen.Core.Tests
         {
             IPasswordProvider provider = new PBKDF2PasswordProvider();
 
-            var password = provider.EncryptPassword("plaintextpassword");
+            var password = provider.HashPassword("plaintextpassword");
 
-            Assert.IsTrue(provider.AreEqual("plaintextpassword", password.Hash, password.Salt));
+            Assert.IsTrue(provider.Verify("plaintextpassword", password.Hash, password.Salt));
         }
     }
 }
