@@ -52,7 +52,7 @@
     <Compile Include="ExtensionMethods\ProcessExtensions.cs" />
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="IO\BlobHandler.cs" />
-    <Compile Include="IO\GZip.cs" />
+    <Compile Include="IO\FileCompressor.cs" />
     <Compile Include="Security\BCryptPasswordProvider.cs" />
     <Compile Include="Security\Impersonator.cs" />
     <Compile Include="IO\ProgressStream.cs" />

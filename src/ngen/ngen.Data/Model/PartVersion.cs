@@ -1,5 +1,6 @@
 ﻿#region Using directives
 
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,5 +24,9 @@ namespace ngen.Data.Model
 
         [NotMapped]
         public string PhotoAddress => $"PartVersion:{Id}";
+
+        public virtual ICollection<ProductionMethod> ProductionMethods { get; set; }
+
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }

@@ -1,20 +1,20 @@
 ﻿using ngen.Data.Model;
-using ngen.Domain.Enum;
+using ngen.Domain.IO;
 
 namespace ngen.Domain.EventArgs
 {
     public class DocumentTransferEventArgs : System.EventArgs
     {
-        public DocumentTransferEventArgs(string fileName, DocumentTransferStep currentStep, int percentComplete)
+        public DocumentTransferEventArgs(string fileName, DocumentTransferStatus currentStatus, int percentComplete)
         {
             FileName = fileName;
-            CurrentStep = currentStep;
+            CurrentStatus = currentStatus;
             PercentComplete = percentComplete;
         }
 
         public string FileName { get; private set; }
 
-        public DocumentTransferStep CurrentStep { get; private set; }
+        public DocumentTransferStatus CurrentStatus { get; private set; }
 
         public int PercentComplete { get; private set; }
     }

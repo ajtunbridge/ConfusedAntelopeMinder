@@ -45,5 +45,7 @@ namespace ngen.Data.Model
         public PartVersion PartVersion { get; set; }
 
         public Supplier Supplier { get; set; }
+
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace ngen.Data.Model
 
         public Person Person { get; set; }
 
+        [InverseProperty("Employees")]
         public SystemRole SystemRole { get; set; }
     }
 }

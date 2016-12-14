@@ -1,5 +1,6 @@
 ﻿#region Using directives
 
+using System;
 using System.Collections.Generic;
 using ngen.Core.IO;
 using ngen.Data.Model;
@@ -8,6 +9,7 @@ using ngen.Data.Model;
 
 namespace ngen.Data.Blobs
 {
+    [Serializable]
     public class DocumentPermissions
     {
         private readonly Dictionary<int, AccessRight> _employeeRights = new Dictionary<int, AccessRight>();

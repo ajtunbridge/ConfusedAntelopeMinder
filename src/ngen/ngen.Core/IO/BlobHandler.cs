@@ -29,7 +29,7 @@ namespace ngen.Core.IO
                 bytes = memoryStream.ToArray();
             }
 
-            return GZip.Compress(bytes);
+            return FileCompressor.Compress(bytes);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace ngen.Core.IO
         {
             T obj;
 
-            var decompressedBytes = GZip.Decompress(blob);
+            var decompressedBytes = FileCompressor.Decompress(blob);
 
             var formatter = new BinaryFormatter();
 

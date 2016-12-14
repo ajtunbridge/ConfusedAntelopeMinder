@@ -1,5 +1,7 @@
 ﻿#region Using directives
 
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -31,5 +33,8 @@ namespace ngen.Data.Model
         public Document Primary2dDrawingDocument { get; set; }
 
         public Document Primary3dDrawingDocument { get; set; }
+
+        [InverseProperty("Part")]
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿#region Using directives
 
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 #endregion
@@ -18,5 +20,7 @@ namespace ngen.Data.Model
 
         [MaxLength(-1)]
         public byte[] Permissions { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace ngen.Core.Security
 {
     public sealed class AESEncryptionProvider : IEncryptionProvider
     {
-        private const int Iterations = 1981;
+        private const int Iterations = 25000;
 
         public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
 
@@ -28,6 +28,13 @@ namespace ngen.Core.Security
         /// <param name="password">The password for the decryption.</param>
         public async Task DecryptFileAsync(string srcFile, string destFile, string password)
         {
+            var destDir = Path.GetDirectoryName(destFile);
+
+            if (!Directory.Exists(destDir))
+            {
+                Directory.CreateDirectory(destDir);
+            }
+
             using (var destination = new FileStream(destFile, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 var aes = new AesManaged();
@@ -124,7 +131,7 @@ namespace ngen.Core.Security
 
         private void Progress_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            OnProgressChanged(new ProgressChangedEventArgs(e.ProgressPercentage, null));
+            OnProgressChanged(e);
         }
 
         private void OnProgressChanged(ProgressChangedEventArgs e)

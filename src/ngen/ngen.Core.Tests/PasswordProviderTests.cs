@@ -11,23 +11,43 @@ namespace ngen.Core.Tests
     public class PasswordProviderTests
     {
         [TestMethod]
-        public void Computed_PBKDF2_Hash_Is_Correct_Length()
+        public void Computed_PBKDF2_hash_is_correct_length()
         {
             IPasswordProvider provider = new PBKDF2PasswordProvider();
 
             var password = provider.HashPassword("plaintextpassword");
 
-            Assert.AreEqual(password.Hash.Length, 88);
+            Assert.AreEqual(password.Length, 133);
         }
 
         [TestMethod]
-        public void Computed_PBKDF2_Hashes_Match()
+        public void Computed_PBKDF2_hashes_match()
         {
             IPasswordProvider provider = new PBKDF2PasswordProvider();
 
             var password = provider.HashPassword("plaintextpassword");
 
-            Assert.IsTrue(provider.Verify("plaintextpassword", password.Hash, password.Salt));
+            Assert.IsTrue(provider.Verify("plaintextpassword", password));
+        }
+
+        [TestMethod]
+        public void Computed_BCrypt_hash_is_correct_length()
+        {
+            IPasswordProvider provider = new BCryptPasswordProvider();
+
+            var password = provider.HashPassword("plaintextpassword");
+
+            Assert.AreEqual(password.Length, 60);
+        }
+
+        [TestMethod]
+        public void Computed_BCrypt_hashes_match()
+        {
+            IPasswordProvider provider = new BCryptPasswordProvider();
+
+            var password = provider.HashPassword("plaintextpassword");
+
+            Assert.IsTrue(provider.Verify("plaintextpassword", password));
         }
     }
 }

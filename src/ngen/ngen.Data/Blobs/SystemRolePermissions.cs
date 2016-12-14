@@ -1,11 +1,13 @@
 ﻿#region Using directives
 
+using System;
 using ngen.Core.IO;
 
 #endregion
 
 namespace ngen.Data.Blobs
 {
+    [Serializable]
     public sealed class SystemRolePermissions
     {
         private SystemPermission _permissions = SystemPermission.NotSet;

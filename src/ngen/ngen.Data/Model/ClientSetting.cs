@@ -18,10 +18,13 @@ namespace ngen.Data.Model
         public string CompanyName { get; set; }
 
         /// <summary>
-        /// Azure, FTP or Local
+        /// Azure or Local
         /// </summary>
         [Required]
         [MaxLength(5)]
         public string DocumentStorageTechnology { get; set; }
+
+        [Required]
+        public byte MaximumVersionCount { get; set; }
     }
 }

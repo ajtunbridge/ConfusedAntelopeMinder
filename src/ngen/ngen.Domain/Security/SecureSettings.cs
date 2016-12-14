@@ -12,17 +12,31 @@ using System.Text;
 
 namespace ngen.Domain.Security
 {
-    public static class SecureDataStorage
+    public static class SecureSettings
     {
         private const string EncryptionKeyFileName = "encryption_key";
         private const string FileShareCredentialsFileName = "file_share_credentials";
+        private const string FileShareDirectoryFileName = "file_share_directory";
+        private const string CheckOutDirectoryFileName = "checkout_directory";
+
         private static readonly IsolatedStorageFile IsoStorageFile;
 
-        static SecureDataStorage()
+        static SecureSettings()
         {
             IsoStorageFile = IsolatedStorageFile.GetMachineStoreForAssembly();
         }
 
+        public static string CheckOutDirectory
+        {
+            get { return GetCheckOutDirectory(); }
+            set { SetCheckOutDirectory(value); }
+        }
+
+        public static string FileShareDirectory
+        {
+            get { return GetFileShareDirectory(); }
+            set { SetFileShareDirectory(value); }
+        }
 
         public static string EncryptionPassword
         {
@@ -36,6 +50,33 @@ namespace ngen.Domain.Security
             set { SetFileShareCredentials(value); }
         }
 
+        private static void SetCheckOutDirectory(string path)
+        {
+            var bytes = Encoding.UTF8.GetBytes(path);
+
+            EncryptAndWriteToFile(bytes, CheckOutDirectoryFileName);
+        }
+
+        private static string GetCheckOutDirectory()
+        {
+            var bytes = ReadAndDecryptFromFile(CheckOutDirectoryFileName);
+
+            return Encoding.UTF8.GetString(bytes);
+        }
+
+        private static void SetFileShareDirectory(string path)
+        {
+            var bytes = Encoding.UTF8.GetBytes(path);
+
+            EncryptAndWriteToFile(bytes, FileShareDirectoryFileName);
+        }
+
+        private static string GetFileShareDirectory()
+        {
+            var bytes = ReadAndDecryptFromFile(FileShareDirectoryFileName);
+
+            return Encoding.UTF8.GetString(bytes);
+        }
 
         private static void SetFileShareCredentials(NetworkCredential credentials)
         {
@@ -82,7 +123,7 @@ namespace ngen.Domain.Security
                 rng.GetBytes(entropy);
             }
 
-            var encryptedData = ProtectedData.Protect(bytes, entropy, DataProtectionScope.CurrentUser);
+            var encryptedData = ProtectedData.Protect(bytes, entropy, DataProtectionScope.LocalMachine);
             
             using (var isoStream = new IsolatedStorageFileStream(fileName, FileMode.Create, IsoStorageFile))
             {
@@ -106,7 +147,7 @@ namespace ngen.Domain.Security
                     var cipherText = Convert.FromBase64String(reader.ReadLine());
                     var entropy = Convert.FromBase64String(reader.ReadLine());
 
-                    var clearBytes = ProtectedData.Unprotect(cipherText, entropy, DataProtectionScope.CurrentUser);
+                    var clearBytes = ProtectedData.Unprotect(cipherText, entropy, DataProtectionScope.LocalMachine);
 
                     return clearBytes;
                 }

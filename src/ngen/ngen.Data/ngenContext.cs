@@ -17,6 +17,11 @@ namespace ngen.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<WorkCentreGroup>()
+                .HasOptional(e => e.Parent)
+                .WithMany()
+                .HasForeignKey(m => m.ParentGroupId);
+
             modelBuilder.Entity<ClientSetting>().MapToStoredProcedures();
 
             modelBuilder.Entity<Customer>().MapToStoredProcedures();
@@ -31,6 +36,8 @@ namespace ngen.Data
 
             modelBuilder.Entity<Fixture>().MapToStoredProcedures();
 
+            modelBuilder.Entity<Operation>().MapToStoredProcedures();
+
             modelBuilder.Entity<Part>().MapToStoredProcedures();
 
             modelBuilder.Entity<PartVersion>().MapToStoredProcedures();
@@ -39,7 +46,15 @@ namespace ngen.Data
 
             modelBuilder.Entity<Photo>().MapToStoredProcedures();
 
+            modelBuilder.Entity<ProductionMethod>().MapToStoredProcedures();
+
+            modelBuilder.Entity<Supplier>().MapToStoredProcedures();
+
             modelBuilder.Entity<SystemRole>().MapToStoredProcedures();
+
+            modelBuilder.Entity<WorkCentre>().MapToStoredProcedures();
+
+            modelBuilder.Entity<WorkCentreGroup>().MapToStoredProcedures();
         }
 
         public DbSet<ClientSetting> ClientSettings { get; set; }
@@ -67,5 +82,9 @@ namespace ngen.Data
         public DbSet<Supplier> Suppliers { get; set; }
 
         public DbSet<SystemRole> SystemRoles { get; set; }
+
+        public DbSet<WorkCentre> WorkCentres { get; set; }
+
+        public DbSet<WorkCentreGroup> WorkCentreGroups { get; set; }
     }
 }

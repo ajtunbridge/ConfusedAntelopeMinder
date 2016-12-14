@@ -3,7 +3,7 @@
     public class BCryptPasswordProvider : IPasswordProvider
     {
         // how expensive the calculation is. Values can be 1 to 31.
-        private const int WorkFactor = 15;
+        private const int WorkFactor = 14;
 
         public string HashPassword(string plainPassword)
         {

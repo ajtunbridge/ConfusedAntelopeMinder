@@ -50,11 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enum\DocumentTransferStep.cs" />
+    <Compile Include="IO\DocumentTransferStatus.cs" />
     <Compile Include="EventArgs\DocumentTransferEventArgs.cs" />
-    <Compile Include="IO\DocumentManager.cs" />
+    <Compile Include="IO\AzureDocumentStore.cs" />
+    <Compile Include="IO\DocumentStoreBase.cs" />
+    <Compile Include="IO\IDocumentStore.cs" />
+    <Compile Include="IO\LocalDocumentStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\SecureDataStorage.cs" />
+    <Compile Include="Security\DocumentAccessException.cs" />
+    <Compile Include="Security\SecurityManager.cs" />
+    <Compile Include="Security\SecureSettings.cs" />
+    <Compile Include="Security\SystemPermissionException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ngen.Core\ngen.Core.csproj">
@@ -70,6 +76,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
