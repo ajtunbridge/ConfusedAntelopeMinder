@@ -25,8 +25,8 @@ namespace ngen.Data.Model
 
         public int DocumentId { get; set; }
 
-        public Employee CreatedBy { get; set; }
+        public virtual Employee CreatedBy { get; set; }
 
-        public Document Document { get; set; }
+        public virtual Document Document { get; set; }
     }
 }

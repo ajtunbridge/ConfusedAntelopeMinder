@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 namespace ngen.Core.Security
 {
@@ -30,8 +32,8 @@ namespace ngen.Core.Security
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Murmur3" /> class.
-        ///     </summar>
-        ///     <param name="seed">The seed for the hash.</param>
+        /// </summary>
+        /// <param name="seed">The seed for the hash.</param>
         public Murmur3(long seed)
         {
             _seed = unchecked((ulong) seed);
@@ -121,8 +123,8 @@ namespace ngen.Core.Security
         /// <param name="array">The input to compute the hash code for.</param>
         /// <param name="ibStart">The offset into the byte array from which to begin using data.</param>
         /// <param name="cbSize">The number of bytes in the byte array to use as data.</param>
-        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //[TargetedPatchingOptOut("Inlining across NGen images crucial for runtime performance")]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [TargetedPatchingOptOut("Inlining across NGen images crucial for runtime performance")]
         protected override void HashCore(byte[] array, int ibStart, int cbSize)
         {
             _length += (uint) cbSize;

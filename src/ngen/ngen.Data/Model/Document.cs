@@ -34,13 +34,13 @@ namespace ngen.Data.Model
 
         public DateTime? CheckedOutAt { get; set; }
         
-        public DocumentFolder DocumentFolder { get; set; }
+        public virtual DocumentFolder DocumentFolder { get; set; }
         
-        public Part Part { get; set; }
+        public virtual Part Part { get; set; }
 
-        public PartVersion PartVersion { get; set; }
+        public virtual PartVersion PartVersion { get; set; }
 
-        public Employee CheckedOutBy { get; set; }
+        public virtual Employee CheckedOutBy { get; set; }
 
         public virtual ICollection<DocumentVersion> DocumentVersions { get; set; }
     }

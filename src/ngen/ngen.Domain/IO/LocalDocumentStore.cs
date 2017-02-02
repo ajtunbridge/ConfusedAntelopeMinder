@@ -107,7 +107,7 @@ namespace ngen.Domain.IO
             // get a list of all versions of this document
             var versions = await DataContext.DocumentVersions.Where(v => v.DocumentId == document.Id).ToListAsync();
 
-            using (new Impersonator(SecureSettings.FileShareCredentials))
+            using (new NetworkShareConnection(SecureSettings.FileShareDirectory, SecureSettings.FileShareCredentials))
             {
                 foreach (var version in versions)
                 {
@@ -120,7 +120,7 @@ namespace ngen.Domain.IO
                         }
                         catch
                         {
-                            // TODO: if deleting version file failed, add orphaned file to a list of files to be deleted
+                            // TODO: if deleting version file failed, add as orphaned file to some sort of list of files to be deleted
                         }
                 }
             }
@@ -303,15 +303,18 @@ namespace ngen.Domain.IO
             var dir = Path.GetDirectoryName(destination);
 
             if (!Directory.Exists(dir))
-                using (new Impersonator(SecureSettings.FileShareCredentials))
+            {
+                using (
+                    new NetworkShareConnection(SecureSettings.FileShareDirectory, SecureSettings.FileShareCredentials))
                 {
                     Directory.CreateDirectory(dir);
                 }
-
+            }
+            
             var aes = new AESEncryptionProvider();
             aes.ProgressChanged += Encryption_ProgressChanged;
 
-            using (new Impersonator(SecureSettings.FileShareCredentials))
+            using (new NetworkShareConnection(SecureSettings.FileShareDirectory, SecureSettings.FileShareCredentials))
             {
                 await aes.EncryptFileAsync(source, destination, SecureSettings.EncryptionPassword);
             }
@@ -333,25 +336,9 @@ namespace ngen.Domain.IO
             OnTransferProgress(args);
         }
 
-        private void Decompresssion_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var args = new DocumentTransferEventArgs(CurrentFileName, DocumentTransferStatus.Decompressing,
-                e.ProgressPercentage);
-
-            OnTransferProgress(args);
-        }
-
         private void Encryption_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             var args = new DocumentTransferEventArgs(CurrentFileName, DocumentTransferStatus.Encrypting,
-                e.ProgressPercentage);
-
-            OnTransferProgress(args);
-        }
-
-        private void Compresssion_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var args = new DocumentTransferEventArgs(CurrentFileName, DocumentTransferStatus.Compressing,
                 e.ProgressPercentage);
 
             OnTransferProgress(args);

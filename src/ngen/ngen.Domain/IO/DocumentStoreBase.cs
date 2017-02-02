@@ -108,6 +108,11 @@ namespace ngen.Domain.IO
 
         protected async Task<string> ComputeHashValueAsync(string source)
         {
+            if (!File.Exists(source))
+            {
+                throw new FileNotFoundException($"Unable to locate file {source}");
+            }
+
             return await Task.Factory.StartNew(() =>
             {
                 using (var murmur3 = new Murmur3())

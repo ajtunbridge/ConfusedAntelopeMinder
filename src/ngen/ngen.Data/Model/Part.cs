@@ -28,11 +28,11 @@ namespace ngen.Data.Model
 
         public int? Primary3dDrawingDocumentId { get; set; }
 
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
-        public Document Primary2dDrawingDocument { get; set; }
+        public virtual Document Primary2dDrawingDocument { get; set; }
 
-        public Document Primary3dDrawingDocument { get; set; }
+        public virtual Document Primary3dDrawingDocument { get; set; }
 
         [InverseProperty("Part")]
         public virtual ICollection<Document> Documents { get; set; }

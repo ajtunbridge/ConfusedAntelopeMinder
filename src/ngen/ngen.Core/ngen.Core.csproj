@@ -54,7 +54,6 @@
     <Compile Include="IO\BlobHandler.cs" />
     <Compile Include="IO\FileCompressor.cs" />
     <Compile Include="Security\BCryptPasswordProvider.cs" />
-    <Compile Include="Security\Impersonator.cs" />
     <Compile Include="IO\ProgressStream.cs" />
     <Compile Include="Security\Murmur3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +62,7 @@
     <Compile Include="Security\IEncryptionProvider.cs" />
     <Compile Include="Security\IHashProvider.cs" />
     <Compile Include="Security\IPasswordProvider.cs" />
+    <Compile Include="Security\NetworkShareConnection.cs" />
     <Compile Include="Security\PasswordAdvisor.cs" />
     <Compile Include="Security\PBKDF2PasswordProvider.cs" />
     <Compile Include="Security\SymmetricCryptoAlgorithm.cs" />

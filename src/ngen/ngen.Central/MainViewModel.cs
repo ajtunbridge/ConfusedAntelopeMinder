@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ngen.Central
 {
-    class ApplicationViewModel
+    class MainViewModel
     {
     }
 }

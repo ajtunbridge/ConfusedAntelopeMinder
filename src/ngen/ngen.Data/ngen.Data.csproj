@@ -53,71 +53,6 @@
     <Compile Include="Blobs\SystemRolePermissions.cs" />
     <Compile Include="Enums\AccessRight.cs" />
     <Compile Include="Enums\SystemPermission.cs" />
-    <Compile Include="Migrations\201612081842015_InitialCreate.cs" />
-    <Compile Include="Migrations\201612081842015_InitialCreate.Designer.cs">
-      <DependentUpon>201612081842015_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612121143103_BCryptPasswordAndNewEntities.cs" />
-    <Compile Include="Migrations\201612121143103_BCryptPasswordAndNewEntities.Designer.cs">
-      <DependentUpon>201612121143103_BCryptPasswordAndNewEntities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612121355010_DocumentCollectionPropertiesAdded.cs" />
-    <Compile Include="Migrations\201612121355010_DocumentCollectionPropertiesAdded.Designer.cs">
-      <DependentUpon>201612121355010_DocumentCollectionPropertiesAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612122033282_AddedMaxVersionCount.cs" />
-    <Compile Include="Migrations\201612122033282_AddedMaxVersionCount.Designer.cs">
-      <DependentUpon>201612122033282_AddedMaxVersionCount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612131127126_NotSureWhatIChangedTBH.cs" />
-    <Compile Include="Migrations\201612131127126_NotSureWhatIChangedTBH.Designer.cs">
-      <DependentUpon>201612131127126_NotSureWhatIChangedTBH.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612131417567_ICollectionDocumentRemovedFromPart.cs" />
-    <Compile Include="Migrations\201612131417567_ICollectionDocumentRemovedFromPart.Designer.cs">
-      <DependentUpon>201612131417567_ICollectionDocumentRemovedFromPart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612131956325_ProductionMethodAndWorkCentreGroupAdded.cs" />
-    <Compile Include="Migrations\201612131956325_ProductionMethodAndWorkCentreGroupAdded.Designer.cs">
-      <DependentUpon>201612131956325_ProductionMethodAndWorkCentreGroupAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132001214_InversePropertyOnWorkCentreGroupParent.cs" />
-    <Compile Include="Migrations\201612132001214_InversePropertyOnWorkCentreGroupParent.Designer.cs">
-      <DependentUpon>201612132001214_InversePropertyOnWorkCentreGroupParent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132009511_AnnotationsOnWorkCentreGroup.cs" />
-    <Compile Include="Migrations\201612132009511_AnnotationsOnWorkCentreGroup.Designer.cs">
-      <DependentUpon>201612132009511_AnnotationsOnWorkCentreGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132109546_AddedWorkCentreAndHierarchyPropertyToWCGroup.cs" />
-    <Compile Include="Migrations\201612132109546_AddedWorkCentreAndHierarchyPropertyToWCGroup.Designer.cs">
-      <DependentUpon>201612132109546_AddedWorkCentreAndHierarchyPropertyToWCGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132115007_RenamedHierarchyToLineageOnWCGroup.cs" />
-    <Compile Include="Migrations\201612132115007_RenamedHierarchyToLineageOnWCGroup.Designer.cs">
-      <DependentUpon>201612132115007_RenamedHierarchyToLineageOnWCGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132120139_TryingToSortOutThisICollectionFkIssue.cs" />
-    <Compile Include="Migrations\201612132120139_TryingToSortOutThisICollectionFkIssue.Designer.cs">
-      <DependentUpon>201612132120139_TryingToSortOutThisICollectionFkIssue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132152126_AddedOperationEntity.cs" />
-    <Compile Include="Migrations\201612132152126_AddedOperationEntity.Designer.cs">
-      <DependentUpon>201612132152126_AddedOperationEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132155289_StoredProceduresForNewEntities.cs" />
-    <Compile Include="Migrations\201612132155289_StoredProceduresForNewEntities.Designer.cs">
-      <DependentUpon>201612132155289_StoredProceduresForNewEntities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612132210117_AssignedFixturesToOperationsInsteadOfParts.cs" />
-    <Compile Include="Migrations\201612132210117_AssignedFixturesToOperationsInsteadOfParts.Designer.cs">
-      <DependentUpon>201612132210117_AssignedFixturesToOperationsInsteadOfParts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612141605593_AddedSomeAnnotationsAndGeneralTidying.cs" />
-    <Compile Include="Migrations\201612141605593_AddedSomeAnnotationsAndGeneralTidying.Designer.cs">
-      <DependentUpon>201612141605593_AddedSomeAnnotationsAndGeneralTidying.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ClientSetting.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Document.cs" />
@@ -150,56 +85,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612081842015_InitialCreate.resx">
-      <DependentUpon>201612081842015_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121143103_BCryptPasswordAndNewEntities.resx">
-      <DependentUpon>201612121143103_BCryptPasswordAndNewEntities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121355010_DocumentCollectionPropertiesAdded.resx">
-      <DependentUpon>201612121355010_DocumentCollectionPropertiesAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612122033282_AddedMaxVersionCount.resx">
-      <DependentUpon>201612122033282_AddedMaxVersionCount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612131127126_NotSureWhatIChangedTBH.resx">
-      <DependentUpon>201612131127126_NotSureWhatIChangedTBH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612131417567_ICollectionDocumentRemovedFromPart.resx">
-      <DependentUpon>201612131417567_ICollectionDocumentRemovedFromPart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612131956325_ProductionMethodAndWorkCentreGroupAdded.resx">
-      <DependentUpon>201612131956325_ProductionMethodAndWorkCentreGroupAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132001214_InversePropertyOnWorkCentreGroupParent.resx">
-      <DependentUpon>201612132001214_InversePropertyOnWorkCentreGroupParent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132009511_AnnotationsOnWorkCentreGroup.resx">
-      <DependentUpon>201612132009511_AnnotationsOnWorkCentreGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132109546_AddedWorkCentreAndHierarchyPropertyToWCGroup.resx">
-      <DependentUpon>201612132109546_AddedWorkCentreAndHierarchyPropertyToWCGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132115007_RenamedHierarchyToLineageOnWCGroup.resx">
-      <DependentUpon>201612132115007_RenamedHierarchyToLineageOnWCGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132120139_TryingToSortOutThisICollectionFkIssue.resx">
-      <DependentUpon>201612132120139_TryingToSortOutThisICollectionFkIssue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132152126_AddedOperationEntity.resx">
-      <DependentUpon>201612132152126_AddedOperationEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132155289_StoredProceduresForNewEntities.resx">
-      <DependentUpon>201612132155289_StoredProceduresForNewEntities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612132210117_AssignedFixturesToOperationsInsteadOfParts.resx">
-      <DependentUpon>201612132210117_AssignedFixturesToOperationsInsteadOfParts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612141605593_AddedSomeAnnotationsAndGeneralTidying.resx">
-      <DependentUpon>201612141605593_AddedSomeAnnotationsAndGeneralTidying.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

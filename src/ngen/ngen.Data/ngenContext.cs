@@ -17,11 +17,6 @@ namespace ngen.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<WorkCentreGroup>()
-                .HasOptional(e => e.Parent)
-                .WithMany()
-                .HasForeignKey(m => m.ParentGroupId);
-
             modelBuilder.Entity<ClientSetting>().MapToStoredProcedures();
 
             modelBuilder.Entity<Customer>().MapToStoredProcedures();
@@ -55,6 +50,11 @@ namespace ngen.Data
             modelBuilder.Entity<WorkCentre>().MapToStoredProcedures();
 
             modelBuilder.Entity<WorkCentreGroup>().MapToStoredProcedures();
+
+            modelBuilder.Entity<WorkCentreGroup>()
+                .HasOptional(e => e.Parent)
+                .WithMany()
+                .HasForeignKey(m => m.ParentGroupId);
         }
 
         public DbSet<ClientSetting> ClientSettings { get; set; }

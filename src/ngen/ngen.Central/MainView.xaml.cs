@@ -20,17 +20,6 @@ namespace ngen.Central
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            var db = new ngenDbContext();
-
-            var customer = new Customer
-            {
-                FullName = "e2v Technologies Ltd - Chelmsford",
-                ShortName = "e2v Chelmsford"
-            };
-
-            db.Customers.Add(customer);
-
-            db.SaveChanges();
         }
     }
 }
